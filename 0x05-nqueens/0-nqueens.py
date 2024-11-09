@@ -1,7 +1,14 @@
 #!/usr/bin/python3
+"""
+N Queens Puzzle Solver
+"""
 import sys
 
+
 def is_safe(board, row, col, n):
+    """
+    Check if it's safe to place a queen at board[row][col]
+    """
     # Check this row on left side
     for i in range(col):
         if board[row][i] == 1:
@@ -19,7 +26,11 @@ def is_safe(board, row, col, n):
 
     return True
 
+
 def solve_nqueens(n):
+    """
+    Solve the N Queens problem and return all solutions
+    """
     board = [[0 for _ in range(n)] for _ in range(n)]
     solutions = []
 
@@ -31,7 +42,7 @@ def solve_nqueens(n):
                     if board[i][j] == 1:
                         solution.append([i, j])
             solutions.append(solution)
-            return True
+            return
 
         for i in range(n):
             if is_safe(board, i, col, n):
@@ -42,7 +53,11 @@ def solve_nqueens(n):
     solve(0)
     return solutions
 
+
 def main():
+    """
+    Main function to handle input and print solutions
+    """
     if len(sys.argv) != 2:
         print("Usage: nqueens N")
         sys.exit(1)
@@ -60,6 +75,7 @@ def main():
     solutions = solve_nqueens(n)
     for solution in solutions:
         print(solution)
+
 
 if __name__ == "__main__":
     main()
